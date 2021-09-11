@@ -1,3 +1,3 @@
-﻿function testbuttonOnClick() {
-    window.alert(this.id + "Clicked");
+﻿function testbuttonOnClick(button) {
+    window.alert(button.id + " was Clicked");
 }
