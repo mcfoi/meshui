@@ -70,11 +70,14 @@ function buildModelFrom(_container_hostid) {
 }
 
 function postToProxy(jsonData) {
-    // window.location.replace(INTERNAL_MESHUI_API + '/?json=' + jsonData);
+    window.location.replace(INTERNAL_MESHUI_API + '/?json=' + jsonData);
+    // POSTs do not get caught by WebView: we ar tied to GET and Querystring
+    /*
     var xhr = new XMLHttpRequest();
     xhr.open("POST", INTERNAL_MESHUI_API, true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(jsonData);
+    */
 }
 
 // Function interacting with host environment (Android, iOS, Browser)
