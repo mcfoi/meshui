@@ -15,8 +15,11 @@ function addToModelIn(container_host_id) {
 }
 
 function createElement(_id) {
+    var br = document.createElement("BR");
+
     let lbl = document.createElement("LABEL");
     lbl.setAttribute("for", "input_" + _id);
+    lbl.setAttribute("style", "margin-right: 10px;");
     lbl.innerHTML = "input_" + _id;
 
     var inpt = document.createElement("INPUT");
@@ -24,14 +27,18 @@ function createElement(_id) {
     inpt.setAttribute("id", "input_" + _id);
 
     var btn = document.createElement("BUTTON");
+    btn.setAttribute("style", "margin-right: 10px;");
     btn.setAttribute("onclick", "removeElement('" + "inputhost_" + _id + "')");
     btn.innerHTML = "Remove";
 
     var dv = document.createElement("DIV");
     dv.setAttribute("id", "inputhost_" + _id);
+    dv.setAttribute("style", "margin-bottom: 10px;");
     dv.appendChild(btn);
     dv.appendChild(lbl);
     dv.appendChild(inpt);
+    dv.appendChild(br);
+    dv.appendChild(br);
     return dv;
 }
 
