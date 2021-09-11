@@ -1,9 +1,8 @@
 ﻿function testbuttonOnClick(button) {
     window.alert(button.id + " was Clicked");
 }
-
+const INTERNAL_MESHUI_API = "https://internal.meshui.api";
 var counter = 0;
-var current_container;
 var container_hostid;
 
 function addToModelIn(container_host_id) {
@@ -44,7 +43,7 @@ function removeElement(element_id) {
 }
 
 function buildModelFrom(_container_hostid) {
-    current_container = document.getElementById(_container_hostid);
+    var current_container = document.getElementById(_container_hostid);
     var children = current_container.children;
     var elements = []
     var x = 0;
@@ -70,12 +69,16 @@ function buildModelFrom(_container_hostid) {
     return json;
 }
 
-function navigateToProxy(jsonData) {
-    window.location.replace('https://internal.meshui.api/?json=' + jsonData);
+function postToProxy(jsonData) {
+    // window.location.replace(INTERNAL_MESHUI_API + '/?json=' + jsonData);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", INTERNAL_MESHUI_API, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(jsonData);
 }
 
 // Function interacting with host environment (Android, iOS, Browser)
 function API_SaveModelFrom(_container_hostid) {
-    var json = buildModelFrom(_container_hostid);
-    navigateToProxy(json);
+    var jsonData = buildModelFrom(_container_hostid);
+    postToProxy(jsonData);
 }
